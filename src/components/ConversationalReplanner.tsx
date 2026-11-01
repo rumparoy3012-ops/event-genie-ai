@@ -27,7 +27,7 @@ export const ConversationalReplanner: React.FC<ConversationalReplannerProps> = (
   apiKey,
   onPlanUpdate,
 }) => {
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
     {
       role: 'assistant',
       content: `Hi! I'm your EventGenie AI assistant 🧞. I can help you adjust your plan dynamically. Try telling me to move budget between categories, or change the event theme. ${!apiKey ? '(Running in offline mode — complex parsing uses smart local rules.)' : '(Connected to Gemini AI for richer understanding.)'}`,

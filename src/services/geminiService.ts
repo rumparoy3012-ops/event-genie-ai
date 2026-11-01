@@ -668,7 +668,7 @@ Return ONLY valid JSON, no markdown.
                 explanation: sanitize(parsed.explanation),
                 changes: [`Transferred $${parsed.amount} from ${parsed.fromCategory} to ${parsed.toCategory}`],
               };
-            } catch (e) {
+            } catch {
               // Fall through to local parser
             }
           } else if (!parsed.isBudgetTransfer) {

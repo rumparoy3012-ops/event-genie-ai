@@ -9,10 +9,10 @@
 import React, { useState, useCallback } from 'react';
 import { Sparkles, GitBranch, ExternalLink, ArrowLeft } from 'lucide-react';
 import { EventConfigurator } from './components/EventConfigurator';
-import { BudgetBreakdown } from './components/BudgetBreakdown';
-import { TimelineChecklist } from './components/TimelineChecklist';
-import { VendorDiligence } from './components/VendorDiligence';
-import { ConversationalReplanner } from './components/ConversationalReplanner';
+const BudgetBreakdown = React.lazy(() => import('./components/BudgetBreakdown').then(m => ({ default: m.BudgetBreakdown })));
+const TimelineChecklist = React.lazy(() => import('./components/TimelineChecklist').then(m => ({ default: m.TimelineChecklist })));
+const VendorDiligence = React.lazy(() => import('./components/VendorDiligence').then(m => ({ default: m.VendorDiligence })));
+const ConversationalReplanner = React.lazy(() => import('./components/ConversationalReplanner').then(m => ({ default: m.ConversationalReplanner })));
 import { generateCustomEventPlan } from './services/geminiService';
 import type { EventFormValues, EventPlan } from './types/event';
 
@@ -270,6 +270,7 @@ const App: React.FC = () => {
               </nav>
 
               {/* Tab Panels */}
+              <React.Suspense fallback={<div className="py-12 text-center text-slate-400 text-sm animate-pulse">Loading workspace module...</div>}>
               <div
                 id={`tabpanel-budget`}
                 role="tabpanel"
@@ -317,6 +318,7 @@ const App: React.FC = () => {
                   />
                 )}
               </div>
+              </React.Suspense>
             </section>
           )}
         </div>
